@@ -78,7 +78,7 @@ export const urlsession: Client<NsurlsessionOptions> = {
             push(`${literalDeclaration('parameters', postData.jsonObj, opts)} as [String : Any]`);
             blank();
 
-            push('let postData = JSONSerialization.data(withJSONObject: parameters, options: [])');
+            push('let postData = try JSONSerialization.data(withJSONObject: parameters, options: [])');
           }
           break;
 
