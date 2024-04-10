@@ -1,6 +1,6 @@
 import type { Target } from '../index.js';
 
-import { nsurlsession } from './urlsession/client.js';
+import { urlsession } from './urlsession/client.js';
 
 export const swift: Target = {
   info: {
@@ -9,6 +9,6 @@ export const swift: Target = {
     default: 'urlsession',
   },
   clientsById: {
-    nsurlsession,
+    urlsession,
   },
 };
