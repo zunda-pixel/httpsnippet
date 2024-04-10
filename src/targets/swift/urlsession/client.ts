@@ -43,6 +43,9 @@ export const urlsession: Client<NsurlsessionOptions> = {
 
     // We just want to make sure people understand that is the only dependency
     push('import Foundation');
+    push('#if canImport(FoundationNetworking)');
+    push('  import FoundationNetworking');
+    push('#endif');
 
     if (Object.keys(allHeaders).length) {
       req.hasHeaders = true;
