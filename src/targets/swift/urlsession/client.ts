@@ -1,6 +1,6 @@
 /**
  * @description
- * HTTP code snippet generator for Swift using NSURLSession.
+ * HTTP code snippet generator for Swift using URLSession.
  *
  * @author
  * @thibaultCha
@@ -35,7 +35,7 @@ export const urlsession: Client<UrlsessionOptions> = {
 
     const { push, blank, join } = new CodeBuilder({ indent: opts.indent });
 
-    // Markers for headers to be created as litteral objects and later be set on the NSURLRequest if exist
+    // Markers for headers to be created as litteral objects and later be set on the URLRequest if exist
     const req = {
       hasHeaders: false,
       hasBody: false,
@@ -86,7 +86,7 @@ export const urlsession: Client<UrlsessionOptions> = {
           /**
            * By appending multipart parameters one by one in the resulting snippet,
            * we make it easier for the user to edit it according to his or her needs after pasting.
-           * The user can just edit the parameters NSDictionary or put this part of a snippet in a multipart builder method.
+           * The user can just edit the parameters Dictionary or put this part of a snippet in a multipart builder method.
            */
 
           push(literalDeclaration('parameters', postData.params, opts));
