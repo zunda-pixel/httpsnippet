@@ -1,24 +1,16 @@
 import Foundation
+#if canImport(FoundationNetworking)
+  import FoundationNetworking
+#endif
 
 let headers = ["cookie": "foo=bar; bar=baz", "accept": "application/json", "content-type": "application/x-www-form-urlencoded"]
 
-let postData = NSMutableData(data: "foo=bar".data(using: String.Encoding.utf8)!)
+var postData = Data("foo=bar".utf8)
 
-let request = NSMutableURLRequest(url: NSURL(string: "https://httpbin.org/anything?foo=bar&foo=baz&baz=abc&key=value")! as URL,
-                                        cachePolicy: .useProtocolCachePolicy,
-                                    timeoutInterval: 10.0)
+var request = URLRequest(url: URL(string: "https://httpbin.org/anything?foo=bar&foo=baz&baz=abc&key=value")!)
 request.httpMethod = "POST"
 request.allHTTPHeaderFields = headers
-request.httpBody = postData as Data
+request.httpBody = postData
 
-let session = URLSession.shared
-let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
-  if (error != nil) {
-    print(error as Any)
-  } else {
-    let httpResponse = response as? HTTPURLResponse
-    print(httpResponse)
-  }
-})
-
-dataTask.resume()
+let (data, response) = try await URLSession.shared.data(with: request)
+print(String(decoding: data, as: UTF8.self))

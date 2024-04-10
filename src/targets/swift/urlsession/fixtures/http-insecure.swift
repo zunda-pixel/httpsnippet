@@ -1,18 +1,10 @@
 import Foundation
+#if canImport(FoundationNetworking)
+  import FoundationNetworking
+#endif
 
-let request = NSMutableURLRequest(url: NSURL(string: "http://httpbin.org/anything")! as URL,
-                                        cachePolicy: .useProtocolCachePolicy,
-                                    timeoutInterval: 10.0)
+var request = URLRequest(url: URL(string: "http://httpbin.org/anything")!)
 request.httpMethod = "GET"
 
-let session = URLSession.shared
-let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
-  if (error != nil) {
-    print(error as Any)
-  } else {
-    let httpResponse = response as? HTTPURLResponse
-    print(httpResponse)
-  }
-})
-
-dataTask.resume()
+let (data, response) = try await URLSession.shared.data(with: request)
+print(String(decoding: data, as: UTF8.self))
