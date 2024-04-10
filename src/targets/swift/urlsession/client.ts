@@ -142,20 +142,8 @@ export const urlsession: Client<UrlsessionOptions> = {
     blank();
     // Retrieving the shared session will be less verbose than creating a new one.
 
-    push('let session = URLSession.shared');
-    push(
-      'let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in',
-    );
-    push('if (error != nil) {', 1);
-    push('print(error as Any)', 2);
-    push('} else {', 1); // Casting the NSURLResponse to NSHTTPURLResponse so the user can see the status     .
-    push('let httpResponse = response as? HTTPURLResponse', 2);
-    push('print(httpResponse)', 2);
-    push('}', 1);
-    push('})');
-    blank();
-    push('dataTask.resume()');
-
+    push('let (data, response) = try await URLSession.shared.data(with: request)');
+    push('print(String(decoding: data, as: UTF8.self))');
     return join();
   },
 };
