@@ -4,7 +4,7 @@ import Foundation
 #endif
 
 let headers = ["content-type": "application/json"]
-let parameters = ["foo": ] as [String : Any]
+let parameters = ["foo": nil] as [String : Any]
 
 let postData = try JSONSerialization.data(withJSONObject: parameters, options: [])
 
