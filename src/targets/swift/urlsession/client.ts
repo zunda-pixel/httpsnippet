@@ -17,12 +17,12 @@ export interface NsurlsessionOptions {
   timeout?: number | string;
 }
 
-export const nsurlsession: Client<NsurlsessionOptions> = {
+export const urlsession: Client<NsurlsessionOptions> = {
   info: {
-    key: 'nsurlsession',
-    title: 'NSURLSession',
-    link: 'https://developer.apple.com/library/mac/documentation/Foundation/Reference/NSURLSession_class/index.html',
-    description: "Foundation's NSURLSession request",
+    key: 'urlsession',
+    title: 'URLSession',
+    link: 'https://developer.apple.com/documentation/foundation/urlsession',
+    description: "Foundation's URLSession request",
     extname: '.swift',
   },
   convert: ({ allHeaders, postData, fullUrl, method }, options) => {
