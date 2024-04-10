@@ -12,12 +12,12 @@ import type { Client } from '../../index.js';
 import { CodeBuilder } from '../../../helpers/code-builder.js';
 import { literalDeclaration } from '../helpers.js';
 
-export interface NsurlsessionOptions {
+export interface UrlsessionOptions {
   pretty?: boolean;
   timeout?: number | string;
 }
 
-export const urlsession: Client<NsurlsessionOptions> = {
+export const urlsession: Client<UrlsessionOptions> = {
   info: {
     key: 'urlsession',
     title: 'URLSession',
