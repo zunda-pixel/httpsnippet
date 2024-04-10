@@ -64,9 +64,9 @@ export const urlsession: Client<UrlsessionOptions> = {
           blank();
           if (postData.params?.length) {
             const [head, ...tail] = postData.params;
-            push(`let postData = NSMutableData(data: "${head.name}=${head.value}".data(using: String.Encoding.utf8)!)`);
+            push(`var postData = Data("${head.name}=${head.value}".utf8)`);
             tail.forEach(({ name, value }) => {
-              push(`postData.append("&${name}=${value}".data(using: String.Encoding.utf8)!)`);
+              push(`postData.append(Data("&${name}=${value}".utf8)`);
             });
           } else {
             req.hasBody = false;
@@ -116,19 +116,13 @@ export const urlsession: Client<UrlsessionOptions> = {
 
         default:
           blank();
-          push(`let postData = NSData(data: "${postData.text}".data(using: String.Encoding.utf8)!)`);
+          push(`let postData = Data("${postData.text}".utf8)`);
       }
     }
 
     blank();
 
-    // NSURLRequestUseProtocolCachePolicy is the default policy, let's just always set it to avoid confusion.
-    push(`let request = NSMutableURLRequest(url: NSURL(string: "${fullUrl}")! as URL,`);
-    push('                                        cachePolicy: .useProtocolCachePolicy,');
-    push(
-      // @ts-expect-error needs better types
-      `                                    timeoutInterval: ${parseInt(opts.timeout, 10).toFixed(1)})`,
-    );
+    push(`var request = URLRequest(url: URL(string: "${fullUrl}")!)`);
     push(`request.httpMethod = "${method}"`);
 
     if (req.hasHeaders) {
@@ -136,7 +130,7 @@ export const urlsession: Client<UrlsessionOptions> = {
     }
 
     if (req.hasBody) {
-      push('request.httpBody = postData as Data');
+      push('request.httpBody = postData');
     }
 
     blank();
