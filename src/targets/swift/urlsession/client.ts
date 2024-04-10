@@ -66,7 +66,7 @@ export const urlsession: Client<UrlsessionOptions> = {
             const [head, ...tail] = postData.params;
             push(`var postData = Data("${head.name}=${head.value}".utf8)`);
             tail.forEach(({ name, value }) => {
-              push(`postData.append(Data("&${name}=${value}".utf8)`);
+              push(`postData.append(Data("&${name}=${value}".utf8))`);
             });
           } else {
             req.hasBody = false;
@@ -138,6 +138,9 @@ export const urlsession: Client<UrlsessionOptions> = {
 
     push('let (data, response) = try await URLSession.shared.data(with: request)');
     push('print(String(decoding: data, as: UTF8.self))');
+
+    blank();
+
     return join();
   },
 };
