@@ -64,7 +64,7 @@ export const urlsession: Client<UrlsessionOptions> = {
           blank();
           if (postData.params?.length) {
             const [head, ...tail] = postData.params;
-            push(`var postData = Data("${head.name}=${head.value}".utf8)`);
+            push(`${tail.length > 0 ? 'var' : 'let'} postData = Data("${head.name}=${head.value}".utf8)`);
             tail.forEach(({ name, value }) => {
               push(`postData.append(Data("&${name}=${value}".utf8))`);
             });
