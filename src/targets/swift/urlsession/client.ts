@@ -87,7 +87,7 @@ export const urlsession: Client<UrlsessionOptions> = {
           push('body += "--\\(boundary)\\r\\n"', 1);
           push('body += "Content-Disposition:form-data; name=\\"\\(paramName)\\""', 1);
           push('if let filename = param["fileName"] {', 1);
-          push('let contentType = param["content-type"]!', 2);
+          push('let contentType = param["contentType"]!', 2);
           push('let fileContent = try String(contentsOfFile: filename, encoding: .utf8)', 2);
           push('body += "; filename=\\"\\(filename)\\"\\r\\n"', 2);
           push('body += "Content-Type: \\(contentType)\\r\\n\\r\\n"', 2);
