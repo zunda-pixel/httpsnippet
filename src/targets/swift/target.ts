@@ -7,6 +7,7 @@ export const swift: Target = {
     key: 'swift',
     title: 'Swift',
     default: 'urlsession',
+    cli: 'swift',
   },
   clientsById: {
     urlsession,
