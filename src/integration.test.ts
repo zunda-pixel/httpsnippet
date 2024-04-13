@@ -70,6 +70,33 @@ int main(void) {
   go: (fixturePath: string) => {
     return shell.execSync(`go run ${fixturePath}`);
   },
+  swift: (fixturePath: string) => {
+    const inf = `/tmp/${path.basename(fixturePath, '.c')}.c`;
+    writeFileSync(
+      inf,
+      `
+import FoundationNetworking
+
+extension URLSession {
+  func data(for request: URLRequest, delegate: (any URLSessionTaskDelegate)? = nil) async throws -> (Data, URLResponse) {
+    return try await withCheckedThrowingContinuation { continuation in
+      self.dataTask(with: request) { data, response, error in
+        if let error {
+          continuation.resume(throwing: error)
+        } else {
+          continuation.resume(returning: (data!, response!))
+        }
+      }
+      .resume()
+    }
+  }
+}
+
+${readFileSync(fixturePath, 'utf8')}
+`,
+    );
+    return shell.execSync(`swift ${inf}`);
+  },
 };
 
 const inputFileNames = readdirSync(path.join(...expectedBasePath), 'utf-8');
