@@ -390,6 +390,7 @@ exports[`availableTargets > returns all available targets 1`] = `
     "title": "Shell",
   },
   {
+    "cli": "swift %s",
     "clients": [
       {
         "description": "Foundation's URLSession request",
