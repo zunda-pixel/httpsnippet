@@ -1,6 +1,6 @@
 import Foundation
 
-let parameters = ["foo": nil] as [String : Any]
+let parameters = ["foo": nil] as [String : Any?]
 
 let postData = try JSONSerialization.data(withJSONObject: parameters, options: [])
 
