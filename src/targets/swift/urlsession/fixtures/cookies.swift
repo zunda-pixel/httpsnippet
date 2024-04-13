@@ -6,5 +6,9 @@ request.httpMethod = "GET"
 request.timeoutInterval = 10
 request.allHTTPHeaderFields = ["cookie": "foo=bar; bar=baz"]
 
-let (data, response) = try await URLSession.shared.data(for: request)
-print(String(decoding: data, as: UTF8.self))
+do {
+  let (data, response) = try await URLSession.shared.data(for: request)
+  print(String(decoding: data, as: UTF8.self))
+} catch {
+  print(error)
+}
