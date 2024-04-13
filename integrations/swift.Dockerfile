@@ -1,6 +1,6 @@
 FROM swift:latest
 
-COPY integrations/https-cert/rootCA.pem /root/integration-test.pem
+COPY integrations/https-cert/rootCA.pem /usr/local/share/ca-certificates/extra/integration-test.pem
 
 # install the integration test certs
 RUN apt-get update && \
