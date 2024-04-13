@@ -1,6 +1,6 @@
 FROM swift:latest
 
-COPY integrations/https-cert/httpbin.org.pem /root/integration-test.crt
+COPY integrations/https-cert/rootCA.pem /root/integration-test.crt
 
 # install the integration test certs
 RUN apt-get update && \
