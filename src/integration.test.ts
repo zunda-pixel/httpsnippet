@@ -25,6 +25,7 @@ const ENVIRONMENT_CONFIG = {
     php: ['curl', 'guzzle'],
     python: ['requests'],
     shell: ['curl'],
+    swift: ['urlsession'],
   },
   local: {
     // When running tests locally, or within a CI environment, we shold limit the targets that
