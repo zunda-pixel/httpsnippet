@@ -16,7 +16,7 @@ for param in parameters {
   body += "--\(boundary)\r\n"
   body += "Content-Disposition:form-data; name=\"\(paramName)\""
   if let filename = param["fileName"] {
-    let contentType = param["content-type"]!
+    let contentType = param["contentType"]!
     let fileContent = try String(contentsOfFile: filename, encoding: .utf8)
     body += "; filename=\"\(filename)\"\r\n"
     body += "Content-Type: \(contentType)\r\n\r\n"
