@@ -223,6 +223,7 @@ function integrationTest(
     const expected = JSON.parse(String(harResponse.content.text));
     let response: any;
     try {
+      console.log(stdout);
       response = JSON.parse(stdout);
     } catch (err) {
       // Some JS targets print out their response with `console.log(json)` which creates
