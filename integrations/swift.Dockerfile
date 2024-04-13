@@ -1,7 +1,8 @@
 FROM swift:latest
 
 COPY integrations/https-cert/rootCA.pem /usr/local/share/ca-certificates/integration-test.crt
-RUN update-ca-certificates --fresh
+RUN rm -rf /var/lib/apt/lists/* && \
+  update-ca-certificates --fresh
 
 RUN apt-get update && \
   apt-get install -y nodejs npm curl && \
