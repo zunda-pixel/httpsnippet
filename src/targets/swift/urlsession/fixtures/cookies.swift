@@ -10,6 +10,6 @@ do {
   let (data, response) = try await URLSession.shared.data(for: request)
   print(String(decoding: data, as: UTF8.self))
 } catch {
-  print("error dayo")
+  print(["errordayo": error.description])
   print(error)
 }
