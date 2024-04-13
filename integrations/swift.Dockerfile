@@ -7,6 +7,7 @@ RUN apt-get update && \
   apt-get install -y ca-certificates && \
   rm -rf /var/lib/apt/lists/* && \
   cp /root/integration-test.crt /usr/local/share/ca-certificates/ && \
+  chmod 644 /usr/local/share/ca-certificates/integration-test.crt && \
   update-ca-certificates
 
 RUN apt-get update && \
