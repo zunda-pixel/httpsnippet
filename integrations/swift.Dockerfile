@@ -1,7 +1,7 @@
 # Swift on Ubuntu 20.04
 FROM swift:latest
 
-COPY integrations/https-cert/rootCA.pem /usr/local/share/ca-certificates/integration-test.crt
+COPY integrations/https-cert/rootCA.crt /usr/local/share/ca-certificates/integration-test.crt
 RUN update-ca-certificates --fresh
 
 RUN apt-get update && \
