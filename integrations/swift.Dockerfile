@@ -22,3 +22,7 @@ ADD package.json /src/
 RUN npm install
 
 ADD . /src
+
+RUN for file in ./src/targets/swift/urlsession/fixtures/*.swift; do \
+    cat ./src/targets/swift/urlsession/extension-for-linux.swift >> $file; \
+done
