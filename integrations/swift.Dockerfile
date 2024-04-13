@@ -1,9 +1,8 @@
-# Swift on Ubuntu 20.04
 FROM swift:latest
 
 COPY integrations/https-cert/rootCA.pem /tmp/rootCA.pem
 RUN openssl x509 -outform der -in /tmp/rootCA.pem -out /tmp/rootCA.crt
-RUN cp /tmp/rootCA.crt /usr/local/share/ca-certificates/ca-certificates.crt
+RUN cp /tmp/rootCA.crt /usr/local/share/ca-certificates/integration-test.crt
 RUN update-ca-certificates
 
 RUN apt-get update && \
