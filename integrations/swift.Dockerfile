@@ -1,12 +1,12 @@
 FROM swift:latest
 
-COPY integrations/https-cert/rootCA.pem /usr/local/share/ca-certificates/extra/integration-test.pem
+COPY integrations/https-cert/rootCA.pem /root/integration-test.cer
 
 # install the integration test certs
 RUN apt-get update && \
   apt-get install -y ca-certificates && \
   rm -rf /var/lib/apt/lists/* && \
-  cp /root/integration-test.pem /usr/local/share/ca-certificates/ && \
+  cp /root/integration-test.cer /usr/local/share/ca-certificates/ && \
   update-ca-certificates
 
 RUN apt-get update && \
