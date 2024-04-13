@@ -1,12 +1,8 @@
+# Swift on Ubuntu 20.04
 FROM swift:latest
 
 COPY integrations/https-cert/rootCA.pem /usr/local/share/ca-certificates/integration-test.crt
-
-# install the integration test certs
-RUN apt-get update && \
-  apt-get install -y ca-certificates && \
-  rm -rf /var/lib/apt/lists/* && \
-  update-ca-certificates
+RUN update-ca-certificates
 
 RUN apt-get update && \
   apt-get install -y nodejs npm curl && \
