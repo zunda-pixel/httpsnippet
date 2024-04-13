@@ -9,5 +9,5 @@ do {
   let (data, response) = try await URLSession.shared.data(for: request)
   print(String(decoding: data, as: UTF8.self))
 } catch {
-  print(error)
+  print("エラーだよ", error)
 }
