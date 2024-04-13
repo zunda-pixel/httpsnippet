@@ -9,7 +9,7 @@ RUN apk --no-cache add ca-certificates curl && \
   update-ca-certificates
 
 # install Swiftly and install Swift
-RUN curl -L https://swift-server.github.io/swiftly/swiftly-install.sh | bash -s -- --disable-confirmation && \
+RUN curl -L https://swift-server.github.io/swiftly/swiftly-install.sh | sh -s -- --disable-confirmation && \
   swiftly install latest
 
 WORKDIR /src
