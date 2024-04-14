@@ -76,6 +76,7 @@ int main(void) {
     writeFileSync(
       filePath,
       `
+#if canImport(FoundationNetworking)
 import FoundationNetworking
 
 extension URLSession {
@@ -92,6 +93,7 @@ extension URLSession {
     }
   }
 }
+#endif
 
 ${readFileSync(fixturePath, 'utf8')}
 `,
