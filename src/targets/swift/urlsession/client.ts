@@ -121,7 +121,7 @@ export const urlsession: Client<UrlsessionOptions> = {
         const value = query[1];
         switch (Object.prototype.toString.call(value)) {
           case '[object String]':
-            push(`URLQueryItem(name: "${key}", value: "${value}"),`, 1);
+            push(`URLQueryItem(name: "${key}", value: "${decodeURIComponent(value)}"),`, 1);
             break;
           case '[object Array]':
             (value as string[]).forEach((val: string) => {
