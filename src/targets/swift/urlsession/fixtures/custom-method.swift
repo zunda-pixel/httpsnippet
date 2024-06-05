@@ -1,6 +1,6 @@
 import Foundation
 
-let url = URL(string: "https://httpbin.org/anything")!
+let url = URL(string: "https://httpbingo.org/anything")!
 var request = URLRequest(url: url)
 request.httpMethod = "PROPFIND"
 request.timeoutInterval = 10

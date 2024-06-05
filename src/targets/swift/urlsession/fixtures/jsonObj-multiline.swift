@@ -4,7 +4,7 @@ let parameters = ["foo": "bar"] as [String : Any?]
 
 let postData = try JSONSerialization.data(withJSONObject: parameters, options: [])
 
-let url = URL(string: "https://httpbin.org/anything")!
+let url = URL(string: "https://httpbingo.org/anything")!
 var request = URLRequest(url: url)
 request.httpMethod = "POST"
 request.timeoutInterval = 10
