@@ -1,14 +1,5 @@
 FROM swift:latest
 
-COPY integrations/https-cert/rootCA.pem /root/integration-test.pem
-
-# install the integration test certs
-RUN apt-get update && \
-  apt-get install -y ca-certificates && \
-  rm -rf /var/lib/apt/lists/* && \
-  cp /root/integration-test.pem /usr/local/share/ca-certificates/ && \
-  update-ca-certificates
-
 RUN apt-get update && \
   apt-get install -y nodejs npm curl && \
   npm install -g n && \

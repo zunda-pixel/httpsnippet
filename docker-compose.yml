@@ -115,8 +115,6 @@ services:
       - INTEGRATION_CLIENT=go
       - NODE_ENV=integration
   integration_swift:
-      depends_on:
-        - reverse_proxy
       build:
         context: .
         dockerfile: integrations/swift.Dockerfile
