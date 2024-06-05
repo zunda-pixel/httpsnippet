@@ -114,3 +114,12 @@ services:
       - HTTPBIN=true
       - INTEGRATION_CLIENT=go
       - NODE_ENV=integration
+  integration_swift:
+    build:
+      context: .
+      dockerfile: integrations/swift.Dockerfile
+    command: 'npx vitest run src/integration.test.ts'
+    environment:
+      - HTTPBIN=true
+      - INTEGRATION_CLIENT=swift
+      - NODE_ENV=integration

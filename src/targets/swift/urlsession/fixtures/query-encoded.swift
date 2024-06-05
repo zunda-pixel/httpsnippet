@@ -1,6 +1,6 @@
 import Foundation
 
-let url = URL(string: "https://httpbin.org/anything")!
+let url = URL(string: "https://httpbingo.org/anything")!
 var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
 let queryItems: [URLQueryItem] = [
   URLQueryItem(name: "startTime", value: "2019-06-13T19%3A08%3A25.455Z"),
