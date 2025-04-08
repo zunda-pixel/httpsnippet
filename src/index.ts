@@ -336,4 +336,23 @@ export class HTTPSnippet {
     const results = this.requests.map(request => convert(request, options));
     return results;
   }
+
+  installation(targetId: TargetId, clientId?: ClientId, options?: any) {
+    if (!this.initCalled) {
+      this.init();
+    }
+
+    if (!options && clientId) {
+      options = clientId;
+    }
+
+    const target = targets[targetId];
+    if (!target) {
+      return [false];
+    }
+
+    const { info } = target.clientsById[clientId || target.info.default];
+    const results = this.requests.map(request => (info?.installation ? info.installation(request, options) : false));
+    return results;
+  }
 }
