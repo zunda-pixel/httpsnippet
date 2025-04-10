@@ -25,6 +25,7 @@ const ENVIRONMENT_CONFIG = {
     php: ['curl', 'guzzle'],
     python: ['requests'],
     shell: ['curl'],
+    swift: ['urlsession'],
   },
   local: {
     // When running tests locally, or within a CI environment, we shold limit the targets that
@@ -68,6 +69,36 @@ int main(void) {
   },
   go: (fixturePath: string) => {
     return shell.execSync(`go run ${fixturePath}`);
+
+  },
+  swift: (fixturePath: string) => {
+    const filePath = `/tmp/${path.basename(fixturePath)}`;
+    writeFileSync(
+      filePath,
+      `
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+
+extension URLSession {
+  func data(for request: URLRequest, delegate: (any URLSessionTaskDelegate)? = nil) async throws -> (Data, URLResponse) {
+    return try await withCheckedThrowingContinuation { continuation in
+      self.dataTask(with: request) { data, response, error in
+        if let error {
+          continuation.resume(throwing: error)
+        } else {
+          continuation.resume(returning: (data!, response!))
+        }
+      }
+      .resume()
+    }
+  }
+}
+#endif
+
+${readFileSync(fixturePath, 'utf8')}
+`,
+    );
+    return shell.execSync(`swift ${filePath}`);
   },
 };
 

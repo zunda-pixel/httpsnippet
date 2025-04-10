@@ -1,6 +1,6 @@
 import Foundation
 
-let url = URL(string: "https://httpbin.org/cookies")!
+let url = URL(string: "https://httpbingo.org/cookies")!
 var request = URLRequest(url: url)
 request.httpMethod = "GET"
 request.timeoutInterval = 10

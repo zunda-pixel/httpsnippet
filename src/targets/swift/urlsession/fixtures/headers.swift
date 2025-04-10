@@ -1,6 +1,6 @@
 import Foundation
 
-let url = URL(string: "https://httpbin.org/headers")!
+let url = URL(string: "https://httpbingo.org/headers")!
 var request = URLRequest(url: url)
 request.httpMethod = "GET"
 request.timeoutInterval = 10
