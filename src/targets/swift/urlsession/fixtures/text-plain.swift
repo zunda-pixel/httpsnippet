@@ -2,7 +2,7 @@ import Foundation
 
 let postData = Data("Hello World".utf8)
 
-let url = URL(string: "https://httpbin.org/anything")!
+let url = URL(string: "https://httpbingo.org/anything")!
 var request = URLRequest(url: url)
 request.httpMethod = "POST"
 request.timeoutInterval = 10

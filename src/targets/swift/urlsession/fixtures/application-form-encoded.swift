@@ -7,7 +7,7 @@ let parameters = [
 let joinedParameters = parameters.map { "\($0.key)=\($0.value)" }.joined(separator: "&")
 let postData = Data(joinedParameters.utf8)
 
-let url = URL(string: "https://httpbin.org/anything")!
+let url = URL(string: "https://httpbingo.org/anything")!
 var request = URLRequest(url: url)
 request.httpMethod = "POST"
 request.timeoutInterval = 10
